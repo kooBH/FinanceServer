@@ -1,4 +1,7 @@
-## Influx
+# InfluxDB
+https://docs.influxdata.com/influxdb/v1.7/
+
+## Start Influx
 
 ```
 influx
@@ -51,6 +54,14 @@ delete from <name of measurement> where time=<time of target>
 ```
 show <name of Measurements>
 ```
+
+### Precision
+
+```
+precision rfc3339
+```
+2019-05-12T09:38:41.3493649787 꼴로 출력
+
 
 ### else
 
