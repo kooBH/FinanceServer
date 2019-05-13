@@ -52,5 +52,5 @@ print("Result: {0}".format(result))
 print("Switch user: " + user)
 client.switch_user(user, pw)
 
-#print("Drop database: " + dbname)
-#client.drop_database(dbname)
+print("Drop database: " + dbname)
+client.drop_database(dbname)
