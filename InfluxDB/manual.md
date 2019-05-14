@@ -68,6 +68,7 @@ create user <username> with password '<password>' with all privileges
 
 ## else
 
-그냥 SQL 쿼리 하면 조회가능함.
++ SQL 쿼리 사용해서 조회
++ timestamp가 같다면 overwirte함. timestamp가 같다면 중복되는 데이터가 존재하지는 않을듯.
 
 

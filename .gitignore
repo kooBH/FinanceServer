@@ -1,1 +1,8 @@
 *.deb
+
+*/secret.py
+*/__pycache__
+
+*.swp
+
+InfluxDB/secret.py
