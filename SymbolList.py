@@ -19,7 +19,7 @@ def init_symbol_DF() :
     df.head()
     return df
 
-def add_symbol(df, name='Apple Inc.' ,symbol='AAPL', init=False):
+def add_symbol(df, name='Apple' ,symbol='AAPL', init=False):
     csv_name = 'symbol_list.csv'
     if(not name in df.index):
         initial_time = dt.datetime(2010,1, 1).strftime("%Y-%m-%d")
@@ -32,17 +32,17 @@ def add_symbol(df, name='Apple Inc.' ,symbol='AAPL', init=False):
     if(init):
         symbol_list = {
          # 미국 IT 기업
-        'Apple Inc.':'AAPL' ,
-        'Microsoft Corporation':'MSFT',
-        'International Business Machines Corporation':'IBM',
-        'Oracle Corporation':'ORCL',
-        'Amazon.com, Inc.':'AMZN',
-        'Tesla, Inc.':'TSLA',
+        'Apple':'AAPL' ,
+        'Microsoft':'MSFT',
+        'IBM':'IBM',
+        'Oracle':'ORCL',
+        'Amazon':'AMZN',
+        'Tesla':'TSLA',
         # 한국 IT 기업
-         'Samsung Electronics Co., Ltd':'005930.KS',
-         'SK hynix, Inc.':'000660.KS',
-        'LG Electronics Inc':'066570.KS',
-        'NAVER Corporation':'035420.KS'
+         'Samsung_Electronics':'005930.KS',
+         'SK_hynix':'000660.KS',
+        'LG_Electronics':'066570.KS',
+        'NAVER':'035420.KS'
         }
         for k in symbol_list:
             add_symbol(df,k,symbol_list[k]) 
