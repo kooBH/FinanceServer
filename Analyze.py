@@ -6,7 +6,7 @@ from statsmodels.formula.api import ols
 import seaborn as sns;  sns.set()
 import matplotlib.pyplot as plt
 
-
+# https://seaborn.pydata.org/generated/seaborn.jointplot.html
 def joint(target_1,target_2,col='Close',dur=240):
     ols_df1 = pd.read_csv('data/'+target_1 + '.csv',index_col='Date')
     ols_df1 = ols_df1[[col]]
