@@ -23,8 +23,25 @@ def joint(target_1,target_2,col='Close',dur=240,eng='c'):
 
     
 def isValid(target,start='2016-01-04',end='2018-12-28',eng='c'):
-    val_df = pd.read_csv('data/'+target+ '.csv',index_col='Date',engine = eng)
-    val_df = val_df[['Close']]
-    val_df = val_df.loc[start:end]
-    val_df.plot()
+    #fig, ax  = plt.subplots(len(target), figsize=(100,20))
+    for i in range(len(target)):
+        print('plotting : ' + target[i])
+        val_df = pd.read_csv('data/'+target[i]+ '.csv',index_col='Date',engine = eng)
+        val_df = val_df[['Close']]
+        val_df = val_df.loc[start:end]
+        val_df.columns = [target[i]]
+        #plt.set_title(target[i])
+        val_df.plot(figsize=(40,4))
+        #val_df.plot()        
+        #title = target[i]
+        #ax[i%4,(int)(i/4)].plot(val_df, color='red')
+        #ax[i].plot(val_df, color='red')
+        #ax[i%4,(int)(i/4)].set_title(title)
+        #ax[i,j].set_xticklabels([tyme.strftime("%Y-%m") for tyme in df.index[-60:]])
+        #ax[i%4,(int)(i/4)].set_xticklabels([tyme.strftime("%m-%d") for tyme in df.index[-60:]], rotation=45)
+        #ax[i,j].plot(data.iloc[-60:]['DJIA']).plot(ax= ax[j,i])                            
+       # plt.show()
+
+        
+    
     
