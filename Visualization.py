@@ -23,6 +23,7 @@ def bar_2(df):
 def stack(df):
     # Import Data
       # Prepare data
+        """
     x_var = 'rsqaure'
     groupby_var = 'class'
     df_agg = df.loc[:, [x_var, groupby_var]].groupby(groupby_var)
@@ -41,3 +42,4 @@ def stack(df):
     plt.ylim(0, 25)
     plt.xticks(ticks=bins[::3], labels=[round(b,1) for b in bins[::3]])
     plt.show()
+    """
