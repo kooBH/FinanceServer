@@ -41,6 +41,38 @@ def isValid(target,start='2016-01-04',end='2018-12-28',eng='c'):
         #ax[i%4,(int)(i/4)].set_xticklabels([tyme.strftime("%m-%d") for tyme in df.index[-60:]], rotation=45)
         #ax[i,j].plot(data.iloc[-60:]['DJIA']).plot(ax= ax[j,i])                            
        # plt.show()
+"""
+def ols_comb(dep,inds,only_rsquare=True,comb_num=1):
+    ols_df = pd.DataFrame()
+    if(comb_num==1):
+        for idx in range(len(ols_ind)):
+            ols_df = pd.concat([ols_dep1, ols_ind[idx]], axis=1, sort=False)
+            
+            model_fit = ols('Samsung_Electronics'+'~1+'+stan_US[idx],data=ols_df).fit()
+
+
+            #print(model_fit.summary())
+
+        for idx in range(len(ols_ind)):
+            ols_df = pd.concat([ols_dep2, ols_ind[idx]], axis=1, sort=False)
+            #ols_df = ols_df.pct_change()
+            ols_df = ols_df.dropna()
+            model_fit = ols('네이버'+'~1+'+stan_US[idx],data=ols_df).fit()
+            print(model_fit.rsquared, end='')
+            print(' : 네이버 ~ ' + stan_US[idx])
+            #print(model_fit.summary())
+    else if(comb_num==2):
+        
+    else if(comb_num==3):
+        
+    else if(comb_num==4):
+        
+    ols_df = ols_df.pct_change()
+    ols_df = ols_df.dropna()
+    print(model_fit.rsquared, end='')
+    print(' :삼성전자 ~ '+ stan_US[idx])
+        
+"""
 
         
     
