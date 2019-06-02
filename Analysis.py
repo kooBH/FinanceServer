@@ -43,25 +43,57 @@ def isValid(target,start='2016-01-04',end='2018-12-28',eng='c'):
         #ax[i,j].plot(data.iloc[-60:]['DJIA']).plot(ax= ax[j,i])                            
        # plt.show()
 
+# + Weekly Monthly
+#
+# https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DatetimeIndex.html
+#
+# https://stackoverflow.com/questions/20584627/how-do-you-pull-weekly-historical-data-from-yahoo-finance
+#
+# ```python
+# df.resample('W', how='mean')
+# ``` 
+# index 를 DataTimeIndex로 변환하면 resampling을 할 수 있다.
+# 
+# https://stackoverflow.com/questions/34597926/converting-daily-stock-data-to-weekly-based-via-pandas-in-python 
+#
+
 def ols_comb(             
            dep,inds,
            comb_num=1,
            show_summary = False,
            do_shift = True,
            show_plot = True,  
-           show_line = False,  
+           show_line = False,
+           weekly=True,
            start='2016-01-04',
-           end='2018-12-28'
+           end='2018-12-28',
+           engine='c'
             ):
     ols_ind=[]
+    ### for coverting to weekly data
+    logic = {'Open'  : 'first',
+    'High'  : 'max',
+    'Low'   : 'min',
+    'Close' : 'last',
+    'Adj Close':'last',
+    'Volume': 'sum'}
+    offset = pd.offsets.timedelta(days=-6)
+    ###
+    
     for i in inds:
-        tmp = pd.read_csv('data/'+i+'.csv',index_col='Date',engine='c')
+        tmp = pd.read_csv('data/'+i+'.csv',index_col='Date',engine=engine)
+        if(weekly):
+            tmp.index = pd.to_datetime(tmp.index)
+            tmp = tmp.resample('W', loffset=offset).apply(logic)
         tmp = tmp[['Close']]
         tmp = tmp.loc[start:end]
         tmp.columns = [i]
         ols_ind.append(tmp)
 
-    ols_dep1 = pd.read_csv('data/'+dep+'.csv',index_col='Date',engine='c')
+    ols_dep1 = pd.read_csv('data/'+dep+'.csv',index_col='Date',engine=engine)
+    if(weekly):
+        ols_dep1.index = pd.to_datetime(ols_dep1.index)
+        ols_dep1 = ols_dep1.resample('W', loffset=offset).apply(logic)
     ols_dep1 = ols_dep1[['Close']]
     ols_dep1 = ols_dep1.loc[start:end]
     ols_dep1.columns = [dep]    
@@ -125,8 +157,9 @@ def ols_comb(
         ret_df['rsqaured'] = ret_df['rsqaured'].round(4)    
         ret_df = ret_df.set_index('rsqaured')
         ret_df.sort_index(inplace=True)
-        ax = ret_df.plot(kind='bar', stacked=True, rot=45,title="OLS : " + str(comb_num)+ " Vars");
+        ax = ret_df.plot(kind='bar', stacked=True, rot=45,title="OLS : " + str(comb_num)+ " Vars",figsize=(10,10));
         ax.set_ylabel("coef")
+        
         
 
 
