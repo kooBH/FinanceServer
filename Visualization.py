@@ -9,11 +9,13 @@ def bar_2(df):
     fig = plt.figure() # Create matplotlib figure
     ax = fig.add_subplot(111) # Create matplotlib axes
     ax2 = ax.twinx() # Create another axes that shares the same x-axis as ax.
-    ax.set_ylim([min(df[df.columns[0]]),max(df[df.columns[0]])])
-    ax2.set_ylim([min(df[df.columns[1]]),max(df[df.columns[1]])])
+    col_0 = df[df.columns[0]]
+    col_1 = df[df.columns[1]]
+    ax.set_ylim([0 ,max(col_0)+np.std(col_0)  ])
+    ax2.set_ylim([min(col_1) - np.std(col_1) ,max(col_1)+np.std(col_1)])
     width = 0.3
-    (df[df.columns[0]]).plot(kind='bar', color='#60b6c9', ax=ax, width=width, position=1 ,bottom = min(df[df.columns[0]]))
-    (df[df.columns[1]]).plot(kind='bar', color='#5d8c70', ax=ax2, width=width, position=0, bottom = min(df[df.columns[1]]))
+    (df[df.columns[0]]).plot(kind='bar', color='#60b6c9', ax=ax, width=width, position=1 ,bottom = 0 )
+    (df[df.columns[1]]).plot(kind='bar', color='#5d8c70', ax=ax2, width=width, position=0, bottom = 0 )
     display([min(df[df.columns[0]]),max(df[df.columns[1]])])                  
     ax.set_ylabel(df.columns[0])
     ax2.set_ylabel(df.columns[1])
