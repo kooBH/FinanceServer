@@ -125,7 +125,7 @@ def ols_comb(
         ret_df['rsqaured'] = ret_df['rsqaured'].round(4)    
         ret_df = ret_df.set_index('rsqaured')
         ret_df.sort_index(inplace=True)
-        ax = ret_df.plot(kind='bar', stacked=True, rot=45);
+        ax = ret_df.plot(kind='bar', stacked=True, rot=45,title="OLS : " + str(comb_num)+ " Vars");
         ax.set_ylabel("coef")
         
 
