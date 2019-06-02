@@ -5,6 +5,7 @@ import datetime as dt
 from statsmodels.formula.api import ols 
 import seaborn as sns;  sns.set()
 import matplotlib.pyplot as plt
+import itertools as it
 
 # https://seaborn.pydata.org/generated/seaborn.jointplot.html
 def joint(target_1,target_2,col='Close',dur=240,eng='c'):
@@ -41,38 +42,93 @@ def isValid(target,start='2016-01-04',end='2018-12-28',eng='c'):
         #ax[i%4,(int)(i/4)].set_xticklabels([tyme.strftime("%m-%d") for tyme in df.index[-60:]], rotation=45)
         #ax[i,j].plot(data.iloc[-60:]['DJIA']).plot(ax= ax[j,i])                            
        # plt.show()
-"""
-def ols_comb(dep,inds,only_rsquare=True,comb_num=1):
-    ols_df = pd.DataFrame()
+
+def ols_comb(             
+           dep,inds,
+           comb_num=1,
+           show_summary = False,
+           do_shift = True,
+           show_plot = True,  
+           show_line = False,  
+           start='2016-01-04',
+           end='2018-12-28'
+            ):
+    ols_ind=[]
+    for i in inds:
+        tmp = pd.read_csv('data/'+i+'.csv',index_col='Date',engine='c')
+        tmp = tmp[['Close']]
+        tmp = tmp.loc[start:end]
+        tmp.columns = [i]
+        ols_ind.append(tmp)
+
+    ols_dep1 = pd.read_csv('data/'+dep+'.csv',index_col='Date',engine='c')
+    ols_dep1 = ols_dep1[['Close']]
+    ols_dep1 = ols_dep1.loc[start:end]
+    ols_dep1.columns = [dep]    
+    
+    ret_df = pd.DataFrame(columns=['rsqaured',*inds])
+    com = it.combinations(range(len(inds)), comb_num)
     if(comb_num==1):
-        for idx in range(len(ols_ind)):
-            ols_df = pd.concat([ols_dep1, ols_ind[idx]], axis=1, sort=False)
-            
-            model_fit = ols('Samsung_Electronics'+'~1+'+stan_US[idx],data=ols_df).fit()
-
-
-            #print(model_fit.summary())
-
-        for idx in range(len(ols_ind)):
-            ols_df = pd.concat([ols_dep2, ols_ind[idx]], axis=1, sort=False)
-            #ols_df = ols_df.pct_change()
+         for idx in com:
+                ols_df = pd.concat([ols_dep1, ols_ind[idx[0]]], axis=1, sort=False)
+                ols_df = ols_df.pct_change()
+                ols_df = ols_df.dropna()
+                model_fit = ols(dep+'~1+'+inds[idx[0]],data=ols_df).fit()
+                if(show_line):
+                    print('%.5f'%(model_fit.rsquared), end='')
+                    print(dep + ' ~ '+ inds[idx[0]])
+                if(show_summary):
+                    print(model_fit.summary())  
+                temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]]})
+                ret_df = ret_df.append(temp_df, sort=True)    
+                
+    elif(comb_num==2):
+        for idx in com:
+            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]]], axis=1, sort=False)
+            ols_df = ols_df.pct_change()
             ols_df = ols_df.dropna()
-            model_fit = ols('네이버'+'~1+'+stan_US[idx],data=ols_df).fit()
-            print(model_fit.rsquared, end='')
-            print(' : 네이버 ~ ' + stan_US[idx])
-            #print(model_fit.summary())
-    else if(comb_num==2):
+            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]],data=ols_df).fit()
+            if(show_line):
+                print('%.5f'%(model_fit.rsquared), end='')
+                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]])
+            if(show_summary):
+                print(model_fit.summary())  
+            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]]})
+            ret_df = ret_df.append(temp_df, sort=True)    
+    elif(comb_num==3):
+        for idx in com:
+            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]],ols_ind[idx[2]]], axis=1, sort=False)
+            ols_df = ols_df.pct_change()
+            ols_df = ols_df.dropna()
+            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]]+'+'+inds[idx[2]],data=ols_df).fit()
+            if(show_line):
+                print('%.5f'%(model_fit.rsquared), end='')
+                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]]+' + '+inds[idx[2]])
+            if(show_summary):
+                print(model_fit.summary())
+            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]],inds[idx[2]]:[model_fit.params.values[3]]})
+            ret_df = ret_df.append(temp_df, sort=True)        
+    elif(comb_num==4):
+        for idx in com:
+            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]],ols_ind[idx[2]],ols_ind[idx[3]]], axis=1, sort=False)
+            ols_df = ols_df.pct_change()
+            ols_df = ols_df.dropna()
+            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]]+'+'+inds[idx[2]]+'+'+inds[idx[3]],data=ols_df).fit()
+            if(show_line):
+                print('%.5f'%(model_fit.rsquared), end='')        
+                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]]+' + '+inds[idx[1]]+' + '+inds[idx[2]]+' + '+inds[idx[3]])
+            if(show_summary):
+                print(model_fit.summary())
+            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]],inds[idx[2]]:[model_fit.params.values[3]],inds[idx[3]]:[model_fit.params.values[4]]})
+            ret_df = ret_df.append(temp_df, sort=True)        
+    if(show_plot):        
+        ret_df['rsqaured'] = ret_df['rsqaured'].round(4)    
+        ret_df = ret_df.set_index('rsqaured')
+        ret_df.sort_index(inplace=True)
+        ax = ret_df.plot(kind='bar', stacked=True, rot=45);
+        ax.set_ylabel("coef")
         
-    else if(comb_num==3):
-        
-    else if(comb_num==4):
-        
-    ols_df = ols_df.pct_change()
-    ols_df = ols_df.dropna()
-    print(model_fit.rsquared, end='')
-    print(' :삼성전자 ~ '+ stan_US[idx])
-        
-"""
+
 
         
     
