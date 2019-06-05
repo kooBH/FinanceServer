@@ -60,13 +60,15 @@ def add_symbol(df, name='Apple' ,symbol='AAPL', init=False):
             'LG디스플레이':'034220.KS',
             '네이버':'035420.KS',
             # 한국 지표
-            
+            'KOSPI':'^KS11',
             # 비교군
             'XLK':'XLK',
             'BitCoin':'BTC-USD',
             'MSCI':'EEM',
             'ten_Year_Treasury':'IEF',
-            'VIX':'^VIX'
+            'VIX':'^VIX',
+            # 기타
+            'SONY':'SON'
             
         }
         for k in symbol_list:
