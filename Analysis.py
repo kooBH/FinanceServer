@@ -203,7 +203,3 @@ def cokur(
     cokur = nom/denom
     return cokur
 
-
-        
-    
-    

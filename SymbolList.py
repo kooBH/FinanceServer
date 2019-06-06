@@ -48,6 +48,9 @@ def add_symbol(df, name='Apple' ,symbol='AAPL', init=False):
             'Intel':'INTC',
             '오라클':'ORCL',
             'SAP':'SAP',
+            'NVIDIA':'NVDA',
+            '퀄컴':'QCOM',
+            'AMD':'AMD',
             # 한국 IT 기업
             'Samsung_Electronics':'005930.KS',
             'SK_hynix':'000660.KS',
