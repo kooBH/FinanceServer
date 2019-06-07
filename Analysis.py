@@ -209,7 +209,7 @@ def cokur(
 
 def corr(
     target1,
-    target2,
+    targets,
     start='2016-01-04',
     end='2018-12-28',
     engine='c',
@@ -230,29 +230,31 @@ def corr(
     ###
     
     df1 = pd.read_csv('data/'+target1+'.csv',index_col='Date',engine=engine)
-    df2 = pd.read_csv('data/'+target2+'.csv',index_col='Date',engine=engine)
-
     df1 = df1.loc[start:end]
-    df2 = df2.loc[start:end]
-    
+        
     if(weekly):       
         df1.index = pd.to_datetime(df1.index)
         df1 = df1.resample('W', loffset=offset).apply(logic)
-        df2.index = pd.to_datetime(df2.index)
-        df2 = df2.resample('W', loffset=offset).apply(logic)
-        
+                
     df1 = df1[[value]]
-    df2 = df2[[value]]
-
     df1 = df1.pct_change()
-    df2 = df2.pct_change()
-    
-    df1.dropna()
-    df2.dropna()
-    
+    df1.dropna()        
     df1.columns = [target1]
-    df2.columns = [target2]
-    df3 = pd.concat([df1, df2],axis=1, sort=False)
-    t = df3.corr()
-    #display(df3)
-    return t
+    
+    df_corr = pd.DataFrame(columns=['Samsung_Electronics'])
+
+    for target2 in targets:
+        df2 = pd.read_csv('data/'+target2+'.csv',index_col='Date',engine=engine)
+        df2 = df2.loc[start:end]
+        if(weekly):  
+            df2.index = pd.to_datetime(df2.index)
+            df2 = df2.resample('W', loffset=offset).apply(logic)
+        
+        df2 = df2[[value]]
+        df2 = df2.pct_change()
+        df2.dropna()
+        df2.columns = [target2]        
+        df3 = pd.concat([df1, df2],axis=1, sort=False)
+        tmp = df3.corr()
+        df_corr.loc[target2] = [tmp.iloc[0][1]]     
+    return df_corr
