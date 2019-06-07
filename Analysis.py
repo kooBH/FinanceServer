@@ -103,6 +103,10 @@ def ols_comb(
     ret_df = pd.DataFrame(columns=['rsqaured',*inds])
     # get all posiible combitations
     com = it.combinations(range(len(inds)), comb_num)
+    for idx in com:
+        ols_inds=[ols_dep1]
+        for i in range(comb_num):
+            ols_inds.append(ols_ind[idx[i]])
     if(comb_num==1):
          for idx in com:
                 ols_df = pd.concat([ols_dep1, ols_ind[idx[0]]], axis=1, sort=False)
@@ -183,8 +187,8 @@ def cokur(
     end='2018-12-28',
     engine='c',
     value = 'Close'
-    ):   
-
+    ):      
+    
     df1 = pd.read_csv('data/'+target1+'.csv',index_col='Date',engine=engine)
     df2 = pd.read_csv('data/'+target2+'.csv',index_col='Date',engine=engine)
 
@@ -203,3 +207,52 @@ def cokur(
     cokur = nom/denom
     return cokur
 
+def corr(
+    target1,
+    target2,
+    start='2016-01-04',
+    end='2018-12-28',
+    engine='c',
+    value = 'Close',
+    weekly=True
+    ):   
+    
+    ### for coverting to weekly data
+    logic = {
+    'Open'  : 'first',
+    'High'  : 'max',
+    'Low'   : 'min',
+    'Adj Close':'last',
+    'Volume': 'sum',
+    'Close' : 'last'    
+    }
+    offset = pd.offsets.timedelta(days=-6)
+    ###
+    
+    df1 = pd.read_csv('data/'+target1+'.csv',index_col='Date',engine=engine)
+    df2 = pd.read_csv('data/'+target2+'.csv',index_col='Date',engine=engine)
+
+    df1 = df1.loc[start:end]
+    df2 = df2.loc[start:end]
+    
+    if(weekly):       
+        df1.index = pd.to_datetime(df1.index)
+        df1 = df1.resample('W', loffset=offset).apply(logic)
+        df2.index = pd.to_datetime(df2.index)
+        df2 = df2.resample('W', loffset=offset).apply(logic)
+        
+    df1 = df1[[value]]
+    df2 = df2[[value]]
+
+    df1 = df1.pct_change()
+    df2 = df2.pct_change()
+    
+    df1.dropna()
+    df2.dropna()
+    
+    df1.columns = [target1]
+    df2.columns = [target2]
+    df3 = pd.concat([df1, df2],axis=1, sort=False)
+    t = df3.corr()
+    #display(df3)
+    return t
