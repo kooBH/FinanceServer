@@ -80,6 +80,7 @@ def ols_comb(
     offset = pd.offsets.timedelta(days=-6)
     ###
     
+    ### Data Preparation ###
     for i in inds:
         tmp = pd.read_csv('data/'+i+'.csv',index_col='Date',engine=engine)
          # Need to covnert index to datetimeindex
@@ -103,82 +104,44 @@ def ols_comb(
     ret_df = pd.DataFrame(columns=['rsqaured',*inds])
     # get all posiible combitations
     com = it.combinations(range(len(inds)), comb_num)
-    for idx in com:
-        ols_inds=[ols_dep1]
-        for i in range(comb_num):
-            ols_inds.append(ols_ind[idx[i]])
-    if(comb_num==1):
-         for idx in com:
-                ols_df = pd.concat([ols_dep1, ols_ind[idx[0]]], axis=1, sort=False)
-                ols_df = ols_df.pct_change()
-                ols_df = ols_df.dropna()
-                model_fit = ols(dep+'~1+'+inds[idx[0]],data=ols_df).fit()
-                if(show_line):
-                    print('%.5f'%(model_fit.rsquared), end='')
-                    print(dep + ' ~ '+ inds[idx[0]])
-                if(show_summary):
-                    print(model_fit.summary())  
-                temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]]})
-                ret_df = ret_df.append(temp_df, sort=True)    
-                
-    elif(comb_num==2):
-        for idx in com:
-            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]]], axis=1, sort=False)
-            ols_df = ols_df.pct_change()
-            ols_df = ols_df.dropna()
-            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]],data=ols_df).fit()
-            if(show_line):
-                print('%.5f'%(model_fit.rsquared), end='')
-                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]])
-            if(show_summary):
-                print(model_fit.summary())  
-            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]]})
-            ret_df = ret_df.append(temp_df, sort=True)    
-    elif(comb_num==3):
-        for idx in com:
-            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]],ols_ind[idx[2]]], axis=1, sort=False)
-            ols_df = ols_df.pct_change()
-            ols_df = ols_df.dropna()
-            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]]+'+'+inds[idx[2]],data=ols_df).fit()
-            if(show_line):
-                print('%.5f'%(model_fit.rsquared), end='')
-                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]]+' + '+inds[idx[2]])
-            if(show_summary):
-                print(model_fit.summary())
-            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]],inds[idx[2]]:[model_fit.params.values[3]]})
-            ret_df = ret_df.append(temp_df, sort=True)        
-    elif(comb_num==4):
-        for idx in com:
-            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]],ols_ind[idx[2]],ols_ind[idx[3]]], axis=1, sort=False)
-            ols_df = ols_df.pct_change()
-            ols_df = ols_df.dropna()
-            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]]+'+'+inds[idx[2]]+'+'+inds[idx[3]],data=ols_df).fit()
-            if(show_line):
-                print('%.5f'%(model_fit.rsquared), end='')        
-                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]]+' + '+inds[idx[1]]+' + '+inds[idx[2]]+' + '+inds[idx[3]])
-            if(show_summary):
-                print(model_fit.summary())
-            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]],inds[idx[2]]:[model_fit.params.values[3]],inds[idx[3]]:[model_fit.params.values[4]]})
-            ret_df = ret_df.append(temp_df, sort=True)      
-    elif(comb_num==5):
-        for idx in com:
-            ols_df = pd.concat([ols_dep1, ols_ind[idx[0]],ols_ind[idx[1]],ols_ind[idx[2]],ols_ind[idx[3]],ols_ind[idx[4]]], axis=1, sort=False)
-            ols_df = ols_df.pct_change()
-            ols_df = ols_df.dropna()
-            model_fit = ols(dep+'~1+'+inds[idx[0]]+'+'+inds[idx[1]]+'+'+inds[idx[2]]+'+'+inds[idx[3]]+'+'+inds[idx[4]],data=ols_df).fit()
-            if(show_line):
-                print('%.5f'%(model_fit.rsquared), end='')        
-                print(dep + ' ~ '+ inds[idx[0]] +' + '+inds[idx[1]]+' + '+inds[idx[1]]+' + '+inds[idx[2]]+' + '+inds[idx[3]]+' + '+inds[idx[4]])
-            if(show_summary):
-                print(model_fit.summary())
-            temp_df = pd.DataFrame( {'rsqaured':model_fit.rsquared,inds[idx[0]]:[model_fit.params.values[1]], inds[idx[1]]:[model_fit.params.values[2]],inds[idx[2]]:[model_fit.params.values[3]],inds[idx[3]]:[model_fit.params.values[4]],inds[idx[4]]:[model_fit.params.values[5]]})
-            ret_df = ret_df.append(temp_df, sort=True) 
+  
+    for c in com:
+        ols_df = ols_dep1
+        for idx in range(comb_num):
+            ols_df = pd.concat([ols_df, ols_ind[c[idx]]], axis=1, sort=False)
+        ols_df = ols_df.pct_change()
+        ols_df = ols_df.dropna()
+        # ols 명령어 생성
+        ols_str = [dep,'~1']
+        for idx in range(comb_num):
+            ols_str.append('+')
+            ols_str.append(inds[c[idx]])
+        ols_str ="".join(ols_str)
+        
+        model_fit = ols(ols_str,data=ols_df).fit()        
+        
+        if(show_line):
+            print('%.5f'%(model_fit.rsquared), end='')
+            print(ols_str)
+            
+        if(show_summary):
+            print(model_fit.summary()) 
+            
+        ols_tuple = {'rsqaured':model_fit.rsquared}
+        for idx in range(comb_num):
+            ols_tuple[inds[c[idx]]] = [model_fit.params.values[idx+1]]
+            
+        temp_df = pd.DataFrame( ols_tuple)
+        ret_df = ret_df.append(temp_df, sort=True)    
+        
     if(show_plot):        
         ret_df['rsqaured'] = ret_df['rsqaured'].round(4)    
         ret_df = ret_df.set_index('rsqaured')
         ret_df.sort_index(inplace=True)
-        ax = ret_df.plot(kind='bar', stacked=True, rot=45,title="OLS : " + str(comb_num)+ " Vars",figsize=(20,10));
-        ax.set_ylabel("coef")
+        ax = ret_df.plot(kind='bar', stacked=True, rot=45,title="OLS : " + str(comb_num)+ " Vars",figsize=(20,10),fontsize=20);
+        ax.set_ylabel("coef",fontsize=24)
+        ax.set_xlabel("rsqaured",fontsize=24)
+        ax.title.set_size(32)
         
 def cokur(
     target1,
