@@ -107,7 +107,6 @@ IT 기업 중 시가 총액이 가장 큰 삼성전자 및 하이닉와 IT 소�
 + [MSCI](https://finance.yahoo.com/quote/EEM?p=EEM&.tsrc=fin-srch) : iShares MSCI Emerging Markets ETF
 + [ten_Year_Treasury](https://finance.yahoo.com/quote/IEF?p=IEF&.tsrc=fin-srch) : iShares 7-10 Year Treasury Bond ETF
 
----
 
     IXT 지수는 S&P 500에 포함된 기업 중 IT 기업의 시가 총액 지수로 국내 IT 산업 주가가 미국 IT 산업 지수의 영향을 받는지 확인하기 위해서 설명 변수에 편입했다. 해당 지수를 직접 구할 수 없어 이를 대체할 자료로 Technology Select Sector SPDR Fund(XLK)를 이용했다. 이는 S&P 지수 펀드 중 하나로 시가 총액 비중으로 펀드를 담고 있어 비교적 정확한 대체 자료로 사용할 수 있다고 판단했다.
     
