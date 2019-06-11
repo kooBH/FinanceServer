@@ -102,7 +102,7 @@ def ols_comb(
     ols_dep1.columns = [dep]    
     
     ret_df = pd.DataFrame(columns=['rsqaured',*inds])
-    # get all posiible combitations
+    # get all posiible combinations
     com = it.combinations(range(len(inds)), comb_num)
   
     for c in com:
