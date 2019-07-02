@@ -2,6 +2,9 @@ from alpha_vantage.timeseries import TimeSeries
 import pandas as pd
 import os
 
+# HDF5 로 변경하자. 
+# APPEND 하는 방식으로. 
+
 def fromAlphaVantage(symbol,name):
     # 별도의 파일에서 API KEY를 가져옴. 
     f = open("ALPHA_KEY", 'r')
@@ -9,7 +12,7 @@ def fromAlphaVantage(symbol,name):
     f.close()
     # AlphaVantage에서 데이터를 받아온다.
     ts  = TimeSeries(key=key, output_format='pandas')
-    tmp, meta_tmp = ts.get_intraday(symbol=symbol,interval='1min', outputsize='full')
+    tmp, meta_tmp = ts.get_intraday(symbol=symbol,interval='1min', outputsize='f.3ull')
     tmp.index = pd.to_datetime(tmp.index)
     idxs = tmp.index
     # 일자별로 파일을 분할해서 저장한다
