@@ -1,0 +1,540 @@
+0.00770 :삼성전자 ~ XLK + VIX
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.008
+Model:                             OLS   Adj. R-squared:                  0.005
+Method:                  Least Squares   F-statistic:                     3.001
+Date:                 Sun, 26 May 2019   Prob (F-statistic):             0.0503
+Time:                         13:10:42   Log-Likelihood:                 2118.3
+No. Observations:                  776   AIC:                            -4231.
+Df Residuals:                      773   BIC:                            -4217.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0008      0.001      1.354      0.176      -0.000       0.002
+XLK            0.0169      0.033      0.509      0.611      -0.048       0.082
+VIX           -0.0123      0.006     -2.010      0.045      -0.024      -0.000
+==============================================================================
+Omnibus:                       39.724   Durbin-Watson:                   2.013
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               87.669
+Skew:                          -0.289   Prob(JB):                     9.18e-20
+Kurtosis:                       4.542   Cond. No.                         58.8
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00352 :삼성전자 ~ XLK + BitCoin
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.004
+Model:                             OLS   Adj. R-squared:                  0.002
+Method:                  Least Squares   F-statistic:                     1.913
+Date:                 Sun, 26 May 2019   Prob (F-statistic):              0.148
+Time:                         13:10:42   Log-Likelihood:                 3144.4
+No. Observations:                 1086   AIC:                            -6283.
+Df Residuals:                     1083   BIC:                            -6268.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0005      0.000      1.289      0.198      -0.000       0.001
+XLK            0.0522      0.027      1.909      0.057      -0.001       0.106
+BitCoin       -0.0039      0.004     -1.010      0.313      -0.012       0.004
+==============================================================================
+Omnibus:                      107.387   Durbin-Watson:                   1.980
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              532.860
+Skew:                          -0.303   Prob(JB):                    1.95e-116
+Kurtosis:                       6.378   Cond. No.                         67.4
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.03962 :삼성전자 ~ XLK + MSCI
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.040
+Model:                             OLS   Adj. R-squared:                  0.037
+Method:                  Least Squares   F-statistic:                     15.94
+Date:                 Sun, 26 May 2019   Prob (F-statistic):           1.64e-07
+Time:                         13:10:42   Log-Likelihood:                 2131.0
+No. Observations:                  776   AIC:                            -4256.
+Df Residuals:                      773   BIC:                            -4242.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0007      0.001      1.330      0.184      -0.000       0.002
+XLK           -0.1602      0.048     -3.346      0.001      -0.254      -0.066
+MSCI           0.2728      0.050      5.464      0.000       0.175       0.371
+==============================================================================
+Omnibus:                       33.512   Durbin-Watson:                   2.020
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               70.668
+Skew:                          -0.246   Prob(JB):                     4.52e-16
+Kurtosis:                       4.394   Cond. No.                         117.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00256 :삼성전자 ~ XLK + ten_Year_Treasury
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.003
+Model:                             OLS   Adj. R-squared:                 -0.000
+Method:                  Least Squares   F-statistic:                    0.9939
+Date:                 Sun, 26 May 2019   Prob (F-statistic):              0.371
+Time:                         13:10:42   Log-Likelihood:                 2116.3
+No. Observations:                  776   AIC:                            -4227.
+Df Residuals:                      773   BIC:                            -4213.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept             0.0007      0.001      1.226      0.221      -0.000       0.002
+XLK                   0.0399      0.035      1.147      0.252      -0.028       0.108
+ten_Year_Treasury    -0.0249      0.134     -0.185      0.853      -0.289       0.239
+==============================================================================
+Omnibus:                       40.742   Durbin-Watson:                   1.978
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               90.848
+Skew:                          -0.295   Prob(JB):                     1.87e-20
+Kurtosis:                       4.569   Cond. No.                         238.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00755 :삼성전자 ~ VIX + BitCoin
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.008
+Model:                             OLS   Adj. R-squared:                  0.006
+Method:                  Least Squares   F-statistic:                     4.117
+Date:                 Sun, 26 May 2019   Prob (F-statistic):             0.0165
+Time:                         13:10:42   Log-Likelihood:                 3146.6
+No. Observations:                 1086   AIC:                            -6287.
+Df Residuals:                     1083   BIC:                            -6272.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0006      0.000      1.431      0.153      -0.000       0.001
+VIX           -0.0135      0.005     -2.837      0.005      -0.023      -0.004
+BitCoin       -0.0020      0.004     -0.546      0.585      -0.009       0.005
+==============================================================================
+Omnibus:                      105.203   Durbin-Watson:                   2.010
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              515.493
+Skew:                          -0.295   Prob(JB):                    1.15e-112
+Kurtosis:                       6.323   Cond. No.                         11.8
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.02596 :삼성전자 ~ VIX + MSCI
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.026
+Model:                             OLS   Adj. R-squared:                  0.023
+Method:                  Least Squares   F-statistic:                     10.30
+Date:                 Sun, 26 May 2019   Prob (F-statistic):           3.84e-05
+Time:                         13:10:42   Log-Likelihood:                 2125.5
+No. Observations:                  776   AIC:                            -4245.
+Df Residuals:                      773   BIC:                            -4231.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0007      0.001      1.205      0.228      -0.000       0.002
+VIX           -0.0028      0.006     -0.453      0.650      -0.015       0.009
+MSCI           0.1359      0.035      3.841      0.000       0.066       0.205
+==============================================================================
+Omnibus:                       35.542   Durbin-Watson:                   2.027
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               78.289
+Skew:                          -0.249   Prob(JB):                     1.00e-17
+Kurtosis:                       4.474   Cond. No.                         63.1
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00791 :삼성전자 ~ VIX + ten_Year_Treasury
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.008
+Model:                             OLS   Adj. R-squared:                  0.005
+Method:                  Least Squares   F-statistic:                     3.080
+Date:                 Sun, 26 May 2019   Prob (F-statistic):             0.0465
+Time:                         13:10:42   Log-Likelihood:                 2118.4
+No. Observations:                  776   AIC:                            -4231.
+Df Residuals:                      773   BIC:                            -4217.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept             0.0008      0.001      1.382      0.167      -0.000       0.002
+VIX                  -0.0132      0.006     -2.342      0.019      -0.024      -0.002
+ten_Year_Treasury    -0.0766      0.119     -0.645      0.519      -0.310       0.156
+==============================================================================
+Omnibus:                       40.105   Durbin-Watson:                   2.010
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               87.657
+Skew:                          -0.296   Prob(JB):                     9.24e-20
+Kurtosis:                       4.536   Cond. No.                         209.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.02630 :삼성전자 ~ BitCoin + MSCI
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.026
+Model:                             OLS   Adj. R-squared:                  0.025
+Method:                  Least Squares   F-statistic:                     14.63
+Date:                 Sun, 26 May 2019   Prob (F-statistic):           5.39e-07
+Time:                         13:10:42   Log-Likelihood:                 3157.0
+No. Observations:                 1086   AIC:                            -6308.
+Df Residuals:                     1083   BIC:                            -6293.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0005      0.000      1.234      0.218      -0.000       0.001
+BitCoin       -0.0046      0.006     -0.746      0.456      -0.017       0.007
+MSCI           0.1437      0.027      5.369      0.000       0.091       0.196
+==============================================================================
+Omnibus:                       99.166   Durbin-Watson:                   2.020
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              489.642
+Skew:                          -0.250   Prob(JB):                    4.74e-107
+Kurtosis:                       6.251   Cond. No.                         66.6
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00130 :삼성전자 ~ BitCoin + ten_Year_Treasury
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.001
+Model:                             OLS   Adj. R-squared:                 -0.001
+Method:                  Least Squares   F-statistic:                    0.7074
+Date:                 Sun, 26 May 2019   Prob (F-statistic):              0.493
+Time:                         13:10:42   Log-Likelihood:                 3143.2
+No. Observations:                 1086   AIC:                            -6280.
+Df Residuals:                     1083   BIC:                            -6265.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept             0.0005      0.000      1.330      0.184      -0.000       0.001
+BitCoin              -0.0043      0.006     -0.681      0.496      -0.017       0.008
+ten_Year_Treasury    -0.1000      0.100     -0.996      0.319      -0.297       0.097
+==============================================================================
+Omnibus:                      108.759   Durbin-Watson:                   1.963
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              533.159
+Skew:                          -0.318   Prob(JB):                    1.68e-116
+Kurtosis:                       6.373   Cond. No.                         247.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.02586 :삼성전자 ~ MSCI + ten_Year_Treasury
+                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     Samsung_Electronics   R-squared:                       0.026
+Model:                             OLS   Adj. R-squared:                  0.023
+Method:                  Least Squares   F-statistic:                     10.26
+Date:                 Sun, 26 May 2019   Prob (F-statistic):           3.99e-05
+Time:                         13:10:42   Log-Likelihood:                 2125.5
+No. Observations:                  776   AIC:                            -4245.
+Df Residuals:                      773   BIC:                            -4231.
+Df Model:                            2                                         
+Covariance Type:             nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept             0.0007      0.001      1.183      0.237      -0.000       0.002
+MSCI                  0.1461      0.033      4.454      0.000       0.082       0.210
+ten_Year_Treasury     0.0436      0.122      0.359      0.720      -0.195       0.282
+==============================================================================
+Omnibus:                       35.316   Durbin-Watson:                   2.021
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               78.060
+Skew:                          -0.246   Prob(JB):                     1.12e-17
+Kurtosis:                       4.474   Cond. No.                         217.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00609 :네이버 ~ XLK + VIX
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.006
+Model:                            OLS   Adj. R-squared:                  0.004
+Method:                 Least Squares   F-statistic:                     2.367
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0945
+Time:                        13:10:42   Log-Likelihood:                 1994.6
+No. Observations:                 776   AIC:                            -3983.
+Df Residuals:                     773   BIC:                            -3969.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0002      0.001      0.261      0.794      -0.001       0.001
+XLK            0.0085      0.039      0.217      0.829      -0.068       0.085
+VIX           -0.0137      0.007     -1.910      0.056      -0.028       0.000
+==============================================================================
+Omnibus:                       59.722   Durbin-Watson:                   2.170
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              173.716
+Skew:                           0.358   Prob(JB):                     1.90e-38
+Kurtosis:                       5.205   Cond. No.                         58.8
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00155 :네이버 ~ XLK + BitCoin
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.002
+Model:                            OLS   Adj. R-squared:                 -0.000
+Method:                 Least Squares   F-statistic:                    0.8413
+Date:                Sun, 26 May 2019   Prob (F-statistic):              0.431
+Time:                        13:10:42   Log-Likelihood:                 2971.4
+No. Observations:                1086   AIC:                            -5937.
+Df Residuals:                    1083   BIC:                            -5922.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   5.291e-05      0.000      0.111      0.912      -0.001       0.001
+XLK            0.0334      0.032      1.042      0.298      -0.030       0.096
+BitCoin        0.0018      0.005      0.403      0.687      -0.007       0.011
+==============================================================================
+Omnibus:                      144.758   Durbin-Watson:                   2.159
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              872.673
+Skew:                           0.437   Prob(JB):                    3.17e-190
+Kurtosis:                       7.304   Cond. No.                         67.4
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00724 :네이버 ~ XLK + MSCI
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.007
+Model:                            OLS   Adj. R-squared:                  0.005
+Method:                 Least Squares   F-statistic:                     2.820
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0602
+Time:                        13:10:43   Log-Likelihood:                 1995.1
+No. Observations:                 776   AIC:                            -3984.
+Df Residuals:                     773   BIC:                            -3970.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0001      0.001      0.171      0.865      -0.001       0.001
+XLK           -0.0571      0.057     -1.000      0.317      -0.169       0.055
+MSCI           0.1269      0.059      2.134      0.033       0.010       0.244
+==============================================================================
+Omnibus:                       60.075   Durbin-Watson:                   2.166
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              171.322
+Skew:                           0.368   Prob(JB):                     6.28e-38
+Kurtosis:                       5.181   Cond. No.                         117.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00197 :네이버 ~ XLK + ten_Year_Treasury
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.002
+Model:                            OLS   Adj. R-squared:                 -0.001
+Method:                 Least Squares   F-statistic:                    0.7623
+Date:                Sun, 26 May 2019   Prob (F-statistic):              0.467
+Time:                        13:10:43   Log-Likelihood:                 1993.0
+No. Observations:                 776   AIC:                            -3980.
+Df Residuals:                     773   BIC:                            -3966.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept          9.694e-05      0.001      0.145      0.885      -0.001       0.001
+XLK                   0.0247      0.041      0.605      0.545      -0.055       0.105
+ten_Year_Treasury    -0.1050      0.158     -0.666      0.506      -0.414       0.204
+==============================================================================
+Omnibus:                       59.657   Durbin-Watson:                   2.156
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              171.701
+Skew:                           0.361   Prob(JB):                     5.20e-38
+Kurtosis:                       5.188   Cond. No.                         238.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00642 :네이버 ~ VIX + BitCoin
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.006
+Model:                            OLS   Adj. R-squared:                  0.005
+Method:                 Least Squares   F-statistic:                     3.499
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0306
+Time:                        13:10:43   Log-Likelihood:                 2974.1
+No. Observations:                1086   AIC:                            -5942.
+Df Residuals:                    1083   BIC:                            -5927.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0001      0.000      0.224      0.823      -0.001       0.001
+VIX           -0.0141      0.006     -2.530      0.012      -0.025      -0.003
+BitCoin        0.0029      0.004      0.668      0.504      -0.006       0.011
+==============================================================================
+Omnibus:                      144.627   Durbin-Watson:                   2.167
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              867.822
+Skew:                           0.438   Prob(JB):                    3.59e-189
+Kurtosis:                       7.291   Cond. No.                         11.8
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00829 :네이버 ~ VIX + MSCI
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.008
+Model:                            OLS   Adj. R-squared:                  0.006
+Method:                 Least Squares   F-statistic:                     3.230
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0401
+Time:                        13:10:43   Log-Likelihood:                 1995.5
+No. Observations:                 776   AIC:                            -3985.
+Df Residuals:                     773   BIC:                            -3971.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.0001      0.001      0.208      0.835      -0.001       0.001
+VIX           -0.0099      0.007     -1.348      0.178      -0.024       0.005
+MSCI           0.0556      0.042      1.328      0.185      -0.027       0.138
+==============================================================================
+Omnibus:                       60.003   Durbin-Watson:                   2.176
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              173.187
+Skew:                           0.363   Prob(JB):                     2.47e-38
+Kurtosis:                       5.197   Cond. No.                         63.1
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00711 :네이버 ~ VIX + ten_Year_Treasury
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.007
+Model:                            OLS   Adj. R-squared:                  0.005
+Method:                 Least Squares   F-statistic:                     2.769
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0633
+Time:                        13:10:43   Log-Likelihood:                 1995.0
+No. Observations:                 776   AIC:                            -3984.
+Df Residuals:                     773   BIC:                            -3970.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept             0.0002      0.001      0.262      0.794      -0.001       0.001
+VIX                  -0.0139      0.007     -2.092      0.037      -0.027      -0.001
+ten_Year_Treasury    -0.1281      0.139     -0.920      0.358      -0.401       0.145
+==============================================================================
+Omnibus:                       58.960   Durbin-Watson:                   2.166
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              169.603
+Skew:                           0.356   Prob(JB):                     1.48e-37
+Kurtosis:                       5.177   Cond. No.                         209.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00745 :네이버 ~ BitCoin + MSCI
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.007
+Model:                            OLS   Adj. R-squared:                  0.006
+Method:                 Least Squares   F-statistic:                     4.066
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0174
+Time:                        13:10:43   Log-Likelihood:                 2974.7
+No. Observations:                1086   AIC:                            -5943.
+Df Residuals:                    1083   BIC:                            -5928.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   1.525e-05      0.000      0.032      0.974      -0.001       0.001
+BitCoin        0.0093      0.007      1.275      0.203      -0.005       0.024
+MSCI           0.0801      0.032      2.530      0.012       0.018       0.142
+==============================================================================
+Omnibus:                      146.370   Durbin-Watson:                   2.168
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              868.686
+Skew:                           0.452   Prob(JB):                    2.33e-189
+Kurtosis:                       7.287   Cond. No.                         66.6
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00299 :네이버 ~ BitCoin + ten_Year_Treasury
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.003
+Model:                            OLS   Adj. R-squared:                  0.001
+Method:                 Least Squares   F-statistic:                     1.624
+Date:                Sun, 26 May 2019   Prob (F-statistic):              0.198
+Time:                        13:10:43   Log-Likelihood:                 2972.2
+No. Observations:                1086   AIC:                            -5938.
+Df Residuals:                    1083   BIC:                            -5923.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept          3.734e-05      0.000      0.078      0.938      -0.001       0.001
+BitCoin               0.0093      0.007      1.274      0.203      -0.005       0.024
+ten_Year_Treasury    -0.1451      0.118     -1.234      0.217      -0.376       0.086
+==============================================================================
+Omnibus:                      144.800   Durbin-Watson:                   2.149
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              859.247
+Skew:                           0.443   Prob(JB):                    2.61e-187
+Kurtosis:                       7.266   Cond. No.                         247.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+0.00633 :네이버 ~ MSCI + ten_Year_Treasury
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    네이버   R-squared:                       0.006
+Model:                            OLS   Adj. R-squared:                  0.004
+Method:                 Least Squares   F-statistic:                     2.461
+Date:                Sun, 26 May 2019   Prob (F-statistic):             0.0860
+Time:                        13:10:43   Log-Likelihood:                 1994.7
+No. Observations:                 776   AIC:                            -3983.
+Df Residuals:                     773   BIC:                            -3969.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept          8.312e-05      0.001      0.125      0.901      -0.001       0.001
+MSCI                  0.0753      0.039      1.939      0.053      -0.001       0.151
+ten_Year_Treasury    -0.0772      0.144     -0.537      0.592      -0.360       0.205
+==============================================================================
+Omnibus:                       60.045   Durbin-Watson:                   2.167
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              171.153
+Skew:                           0.368   Prob(JB):                     6.83e-38
+Kurtosis:                       5.180   Cond. No.                         217.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

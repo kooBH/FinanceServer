@@ -11,3 +11,9 @@ InfluxDB/secret.py
 
 .ipynb_checkpoints
 __pycache__
+
+*.xlsx
+
+*.zip
+
+ALPHA_KEY
