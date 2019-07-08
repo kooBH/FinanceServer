@@ -1,5 +1,5 @@
 host = 'localhost'
 port = 8086
-user = 
-pw = 
+user = 'kbh'
+pw = 'qwer1234'
 
