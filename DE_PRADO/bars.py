@@ -1,6 +1,26 @@
 import pandas as pd
 import numpy as np
 
+def dollar_Bar(data,threshold,index='timestamp',col_price='close',col_volume='volume'):
+    # imtermediate variables
+    cur_p = data.iloc[0,0]
+    
+    # volume
+    cur_v = 0
+    cnt_v=0
+    tick = pd.DataFrame(columns=[col_price]) 
+    tick.index.names = [index]
+
+    for i in range(len(data.index)):
+        cur_v=data.iloc[i,1]
+        cur_p = data.iloc[i,0]
+        cnt_v +=cur_v*cur_p
+        if(cnt_v >= threshold):
+            cnt_v=0      
+            tmp = data.iloc[i]                           
+            tick.loc[data.index[i]] = [tmp[0]] 
+    return tick    
+
 def ewma_weight(window):
     return 2/(window+1)
 
@@ -309,7 +329,7 @@ def dollar_init(data,threshold,col_price='close',col_volume='volume'):
 
     return e_0,v_plus,e_v
 
-def dollar_procedure(data,e_0,v_plus,e_v,threshold=500,index='timestamp',col_price='close',col_volume='volume'):
+def dollar_procedure(data,e_0,v_plus,e_v,threshold,index,col_price,col_volume):
     # imtermediate variables
     theta = 0
     cur_tick = 0
