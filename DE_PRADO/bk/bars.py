@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from tqdm import tqdm
 
 def dollar_Bar(data,threshold,index='timestamp',col_price='close',col_volume='volume'):
     # imtermediate variables
@@ -292,34 +291,36 @@ def dollar_init(data,threshold,col_price='close',col_volume='volume'):
         
         cur_v=i[1][col_volume]
         cur_p = i[1][col_price]
-
-        # dollar bar
-        cur_v *= cur_p
-
-        cum_v += cur_v
-        # step 1
-        prev_p = cur_p
-        d_p = cur_p - prev_p
-
-        # b_t                      
-        if d_p != 0:
-            cur_b = abs(d_p)/d_p                
-        else :
-            if prev_b == 0 : # 예외처리
-                cur_b = 1
+        cnt_v +=cur_v*cur_p
+        if(cnt_v >= threshold):
+            cnt_v = 0
+            # dollar bar
+            cur_v *= cur_p
+            
+            cum_v += cur_v
+            # step 1
+            prev_p = cur_p
+            d_p = cur_p - prev_p
+            
+            # b_t                      
+            if d_p != 0:
+                cur_b = abs(d_p)/d_p                
             else :
-                cur_b = prev_b     
-        # v_t       
-        if cur_b ==1:
-            pos_v +=cur_v
-            num_pos+=1
-
-        # step 2        
-        cum_b += cur_b * cur_v
-        theta.append(cum_b )
-        num_tick+=1
-        if(cur_b==1):
-            num_p_1 +=1
+                if prev_b == 0 : # 예외처리
+                    cur_b = 1
+                else :
+                    cur_b = prev_b     
+            # v_t       
+            if cur_b ==1:
+                pos_v +=cur_v
+                num_pos+=1
+            
+            # step 2        
+            cum_b += cur_b * cur_v
+            theta.append(cum_b )
+            num_tick+=1
+            if(cur_b==1):
+                num_p_1 +=1
                 
     pr = num_p_1/num_tick
     e_0 = (np.mean(np.abs(theta))) + np.std(theta)
@@ -328,7 +329,7 @@ def dollar_init(data,threshold,col_price='close',col_volume='volume'):
 
     return e_0,v_plus,e_v
 
-def dollar_procedure(data,e_0,v_plus,e_v,index,col_price,col_volume):
+def dollar_procedure(data,e_0,v_plus,e_v,threshold,index,col_price,col_volume):
     # imtermediate variables
     theta = 0
     cur_tick = 0
@@ -363,41 +364,45 @@ def dollar_procedure(data,e_0,v_plus,e_v,index,col_price,col_volume):
 
         cur_v=data.iloc[i,1]
         cur_p = data.iloc[i,0]
-        # dollar bar
-        cur_v *= cur_p
-
-        cum_v +=cur_v            
-        # step 1
-        prev_p = cur_p
-        d_p = cur_p - prev_p
-
-        prev_b = cur_b
-        if d_p != 0:
-            cur_b = abs(d_p)/d_p                
-        else :
-            if prev_b == 0 : # 예외처리
-                cur_b = 1
+        cnt_v +=cur_v*cur_p
+        if(cnt_v >= threshold):
+            cnt_v=0
+            # dollar bar
+            cur_v *= cur_p
+            
+            cum_v +=cur_v            
+            # step 1
+            prev_p = cur_p
+            
+            d_p = cur_p - prev_p
+            
+            prev_b = cur_b
+            if d_p != 0:
+                cur_b = abs(d_p)/d_p                
             else :
-                cur_b = prev_b    
-
-        # v_t       
-        if (cur_b == 1):
-            pos_v +=cur_v
-            num_pos+=1   
-            num_p_1 +=1
-
-        # step 2
-        theta += cur_b*cur_v
-
-        # step 3
-        if(np.abs(theta) > e_0 * np.abs(2*v_plus - e_v)):    
-            tmp = data.iloc[i]                           
-            # reset 
-            theta=0                
-                #print(data.index[i])
-                #print(tmp[0])
-                #print(tmp[1])
-            tick.loc[data.index[i]] = [tmp[0]] 
+                if prev_b == 0 : # 예외처리
+                    cur_b = 1
+                else :
+                    cur_b = prev_b    
+                    
+            # v_t       
+            if (cur_b == 1):
+                pos_v +=cur_v
+                num_pos+=1   
+                num_p_1 +=1
+                    
+            # step 2
+            theta += cur_b*cur_v
+            
+            # step 3
+            if(np.abs(theta) > e_0 * np.abs(2*v_plus - e_v)):    
+                tmp = data.iloc[i]                           
+                # reset 
+                theta=0                
+                    #print(data.index[i])
+                    #print(tmp[0])
+                    #print(tmp[1])
+                tick.loc[data.index[i]] = [tmp[0]] 
             num_tick+=1
         
     # update        
@@ -438,14 +443,14 @@ def VIB(weekly_data,threshold=20000,index='timestamp',col_price='close',col_volu
     
     return volume
         
-def DIB(weekly_data,index='timestamp',col_price='close',col_volume='volume'):
+def DIB(weekly_data,threshold=200000,index='timestamp',col_price='close',col_volume='volume'):
     print('DIB start')
     dollar = pd.DataFrame(columns=['close']) 
     dollar.index.names = ['timestamp']
     
-    e_0,v_plus,e_v = dollar_init(weekly_data[1],col_price,col_volume)
-    for tmp in tqdm(weekly_data[2:]):
-        e_0,v_plus,e_v,t_dollar = dollar_procedure(tmp,e_0,v_plus,e_v,index,col_price,col_volume)
+    e_0,v_plus,e_v = dollar_init(weekly_data[1],threshold,col_price,col_volume)
+    for tmp in weekly_data[2:]:
+        e_0,v_plus,e_v,t_dollar = dollar_procedure(tmp,e_0,v_plus,e_v,threshold,index,col_price,col_volume)
         dollar = pd.concat([dollar, t_dollar])
     
     return dollar
