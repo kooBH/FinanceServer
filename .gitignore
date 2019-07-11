@@ -17,3 +17,5 @@ __pycache__
 *.zip
 
 ALPHA_KEY
+
+others/
