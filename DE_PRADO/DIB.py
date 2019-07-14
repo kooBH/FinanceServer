@@ -25,11 +25,19 @@ class DIB:
         self.dollar.index.names = ['timestamp']
         
     def ewma(self):
+    
+   
+    
+    def init_exp(self,unit):
         
-    def init(self):
-        
-    def process(self):
-        
+    def genDIB(self,unit):
+    
+    def run(self,data):
+        init_exp(data[0])
+        for tmp in data[1:]:
+            t_df = genDIB(tmp)
+            self.dollar = pd.concat[dollar,t_df]
+    
     def getDF(self):
         return self.dollar
         
