@@ -2,6 +2,7 @@ from PyQt5.QAxContainer import *
 from PyQt5.QtCore import *
 import pandas as pd
 import time
+import os,sys
 
 class kiwoom(QAxWidget):
     def __init__(self):
@@ -60,7 +61,7 @@ class kiwoom(QAxWidget):
         return ret
 
     def _receive_tr_data(self, screen_no, rqname, trcode, record_name, next, unused1, unused2, unused3, unused4):
-        print("receive_tr_data call")
+        #print("receive_tr_data call")
         if next == '2':
             self.remained_data = True
         else:
@@ -79,22 +80,19 @@ class kiwoom(QAxWidget):
     # KODEX 코스닥 150 레버리지 종목의 분봉 데이터를 요청한다.
     # 005930 : 삼성전자
     # 약 100일치 분봉 데이터를 요청한다.
-    def req_minute_data(self):
-        self.set_input_value("종목코드","005930")
+    def req_minute_data(self,stock_code):
+        self.set_input_value("종목코드",stock_code)
         self.set_input_value("틱범위", 0)
         self.set_input_value("수정주가구분", 0)
         self.comm_rq_data("opt10080_req", "opt10080", 0, "1999")
-        print('첫 데이터 순환')
         # 반년치가 한계 134 정도?
-        for i in range(140):
+        for i in range(134):
             time.sleep(0.2)
-            self.set_input_value("종목코드", "005930")
+            self.set_input_value("종목코드", stock_code)
             self.set_input_value("틱범위", 0)
             self.set_input_value("수정주가구분", 0)
             self.comm_rq_data("opt10080_req", "opt10080", 2, "1999")
-            print(str(i+2) +' 번째 데이터 순환')
 
-        print("코스닥 레버리지 분봉 데이터 저장 성공")
 
     # KODEX 코스닥 150 레버리지 종목의 일봉 데이터를 요청한다.
     def req_day_data(self):
@@ -129,7 +127,8 @@ class kiwoom(QAxWidget):
 #           self.db.insert_Leve(day,int(high),int(low))
             #self.db.insert_Leve(day, abs(int(high)), abs(int(low)))
         temp_df.index  = temp_df.index.map(lambda x: pd.to_datetime(str(x), format='%Y%m%d%H%M%S'))
-        temp_df.to_csv( str(self.cnt)+ '.csv')
+        if not os.path.exists(str(trcode)): os.makedirs(str(trcode))
+        temp_df.to_csv( str(trcode)+'/'+str(self.cnt)+ '.csv')
         self.cnt+=1
 
         '''
