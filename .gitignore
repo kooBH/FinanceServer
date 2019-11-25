@@ -23,3 +23,7 @@ others/
 
 # DB
 *.db
+
+# pickle
+
+*.pkl
