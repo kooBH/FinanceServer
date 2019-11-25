@@ -81,18 +81,32 @@ class kiwoom(QAxWidget):
     # 005930 : 삼성전자
     # 약 100일치 분봉 데이터를 요청한다.
     def req_minute_data(self,stock_code):
+        print('initialize df_min')
+        self.df_min = pd.DataFrame(columns=['close','volume'])
+        self.df_min.index.name = 'data' 
+
         self.set_input_value("종목코드",stock_code)
         self.set_input_value("틱범위", 0)
         self.set_input_value("수정주가구분", 0)
         self.comm_rq_data("opt10080_req", "opt10080", 0, "1999")
-        # 반년치가 한계 134 정도?
+
+        # 반년치가 한계, iteration은 134 정도?
         for i in range(134):
             time.sleep(0.2)
             self.set_input_value("종목코드", stock_code)
             self.set_input_value("틱범위", 0)
             self.set_input_value("수정주가구분", 0)
             self.comm_rq_data("opt10080_req", "opt10080", 2, "1999")
+            print('req_minute_data : iter ' + str(i))
 
+        # 가장 최근 데이터 부터 받기 때문에 순서가 맞지 않다. 정렬 해준다.
+        self.df_min = self.df_min.sort_index()
+
+        # 종목 코드명 -> 종목 명 
+        name = self.dynamicCall("GetMasterCodeName(QString)", [stock_code])
+        print('data name : ' + str(name))
+        if not os.path.exists('data'): os.makedirs('data')
+        self.df_min.to_csv( 'data/'+str(name)+ '.csv')
 
     # KODEX 코스닥 150 레버리지 종목의 일봉 데이터를 요청한다.
     def req_day_data(self):
@@ -126,10 +140,9 @@ class kiwoom(QAxWidget):
             temp_df.loc[date] = [close,volume]
 #           self.db.insert_Leve(day,int(high),int(low))
             #self.db.insert_Leve(day, abs(int(high)), abs(int(low)))
+        print('append data')
         temp_df.index  = temp_df.index.map(lambda x: pd.to_datetime(str(x), format='%Y%m%d%H%M%S'))
-        if not os.path.exists(str(trcode)): os.makedirs(str(trcode))
-        temp_df.to_csv( str(trcode)+'/'+str(self.cnt)+ '.csv')
-        self.cnt+=1
+        self.df_min = self.df_min.append(temp_df)
 
         '''
             if day[8:] == "090000":

@@ -21,3 +21,5 @@ ALPHA_KEY
 others/
 
 
+# DB
+*.db

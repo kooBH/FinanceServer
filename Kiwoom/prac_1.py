@@ -40,7 +40,9 @@ class MainWindow(QMainWindow):
 
         kiwoom = kiwoom.kiwoom()
         kiwoom.comm_connect()
-        kiwoom.req_minute_data()
+        #데이터 요청
+        #kiwoom.req_minute_data('005930')
+        
         #kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
         #ret = kiwoom.dynamicCall("CommConnect()")
 
